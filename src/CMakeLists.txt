@@ -11,7 +11,8 @@ find_package(Boost REQUIRED)
 
 add_library(mudstring ${header} ${src})
 target_include_directories(mudstring PUBLIC
-        $<BUILD_INTERFACE:${mudstring_SOURCE_DIR}/include ${Boost_INCLUDE_DIRS}>
+        $<BUILD_INTERFACE:${mudstring_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>
         $<INSTALL_INTERFACE:${include_dest}>
         )
 
