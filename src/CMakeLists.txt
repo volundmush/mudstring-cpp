@@ -10,6 +10,10 @@ set(src "mudstring.cpp" "color.cpp" "style.cpp" "text.cpp")
 find_package(Boost REQUIRED)
 
 add_library(mudstring ${header} ${src})
-target_include_directories(mudstring PUBLIC ${mudstring_SOURCE_DIR}/include
-        ${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIRS})
-target_link_libraries(mudstring)
+target_include_directories(mudstring PUBLIC
+        $<BUILD_INTERFACE:${mudstring_SOURCE_DIR}/include ${Boost_INCLUDE_DIRS}>
+        $<INSTALL_INTERFACE:${include_dest}>
+        )
+
+install(TARGETS mudstring EXPORT mudstring DESTINATION ${main_lib_dest})
+install(FILES ${header} DESTINATION ${include_dest})
